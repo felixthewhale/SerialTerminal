@@ -10,15 +10,15 @@ pool:
   vmImage: ubuntu-latest
 
 stages:
-- stage: Build
-  displayName: 'Build and Test'
+- stage: BuildAndDeploy
+  displayName: 'Build and Deploy'
   jobs:
-  - job: BuildJob
+  - job: BuildAndDeployJob
     steps:
     - script: echo 'Building the project...'
     - task: UsePythonVersion@0
       inputs:
         versionSpec: '3.x'
-    - script: python -m pip install --upgrade pip && pip install -r requirements.txt
+    - script: python -m pip install --upgrade pip && pip install serial
     - script: python main.py
       displayName: 'Run Main Script'
